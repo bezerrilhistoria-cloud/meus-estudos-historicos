@@ -1,301 +1,162 @@
-!DOCTYPE html
-html lang=pt-BR
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    titleMeus Estudos Históricostitle
-    style
-        root {
-            --primary #8e44ad;
-            --bg #f5f6fa;
-            --card-bg #ffffff;
-            --text #2f3640;
-        }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HistoriGrafia - Meus Estudos</title>
+    <!-- Tailwind CSS para um design moderno e responsivo -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
 
-        body {
-            font-family 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color var(--bg);
-            color var(--text);
-            margin 0;
-            padding 20px;
-        }
+    <!-- Barra de Navegação -->
+    <nav class="bg-indigo-900 text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">📜</span>
+                <h1 class="text-xl font-bold tracking-wide">HistoriGrafia</h1>
+            </div>
+            <p class="text-sm text-indigo-200 hidden sm:block">Meu Banco de Dados Históricos Pessoal</p>
+        </div>
+    </nav>
 
-        header {
-            text-align center;
-            margin-bottom 40px;
-        }
-
-        h1 { color #2c3e50; }
-
-        .container {
-            max-width 1200px;
-            margin 0 auto;
-            display grid;
-            grid-template-columns 1fr 2fr;
-            gap 30px;
-        }
-
-        @media (max-width 768px) {
-            .container { grid-template-columns 1fr; }
-        }
-
-         Seção da Linha do Tempo 
-        .timeline {
-            background var(--card-bg);
-            padding 20px;
-            border-radius 8px;
-            box-shadow 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .timeline-item {
-            padding 15px;
-            border-left 4px solid var(--primary);
-            margin-bottom 15px;
-            background #f8f9fa;
-            border-radius 0 8px 8px 0;
-        }
-
-        .timeline-item h3 { margin 0 0 5px 0; color var(--primary); }
-        .timeline-item p { margin 0; font-size 0.9em; color #7f8c8d; }
-
-         Seção dos Personagens 
-        .characters-section {
-            background var(--card-bg);
-            padding 20px;
-            border-radius 8px;
-            box-shadow 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .section-header {
-            display flex;
-            justify-content space-between;
-            align-items center;
-            margin-bottom 20px;
-        }
-
-        button {
-            background-color var(--primary);
-            color white;
-            border none;
-            padding 10px 15px;
-            border-radius 5px;
-            cursor pointer;
-            font-weight bold;
-            transition background 0.2s;
-        }
-
-        buttonhover { background-color #732d91; }
-
-         Grid de Personagens 
-        .characters-grid {
-            display grid;
-            grid-template-columns repeat(auto-fill, minmax(250px, 1fr));
-            gap 20px;
-        }
-
-        .char-card {
-            background #f8f9fa;
-            border 1px solid #e1e8ed;
-            border-radius 8px;
-            padding 15px;
-            position relative;
-        }
-
-        .char-card h3 { margin-top 0; color #2c3e50; border-bottom 2px solid var(--primary); padding-bottom 5px; }
-        .char-card p { margin 8px 0; font-size 0.9em; }
-        .char-card strong { color #34495e; }
-
-         Estilos do Formulário Modal 
-        .modal {
-            display none;
-            position fixed;
-            top 0; left 0; width 100%; height 100%;
-            background rgba(0,0,0,0.5);
-            justify-content center;
-            align-items center;
-            z-index 1000;
-        }
-
-        .modal-content {
-            background white;
-            padding 25px;
-            border-radius 8px;
-            width 100%;
-            max-width 400px;
-            box-shadow 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .modal-content h2 { margin-top 0; }
-
-        .form-group {
-            margin-bottom 15px;
-        }
-
-        .form-group label {
-            display block;
-            margin-bottom 5px;
-            font-weight bold;
-            font-size 0.9em;
-        }
-
-        .form-group input {
-            width 100%;
-            padding 8px;
-            border 1px solid #ccd1d9;
-            border-radius 4px;
-            box-sizing border-box;
-        }
-
-        .modal-actions {
-            display flex;
-            justify-content flex-end;
-            gap 10px;
-            margin-top 20px;
-        }
-
-        .btn-cancel { background-color #e74c3c; }
-        .btn-cancelhover { background-color #c0392b; }
-    style
-head
-body
-
-    header
-        h1Meus Estudos Históricos 📜h1
-        pOrganizando eras, linhas do tempo e grandes personagens.p
-    header
-
-    div class=container
-        !-- Coluna da Esquerda Linha do Tempo fixa de Eras --
-        aside class=timeline
-            h2Eras Estudadash2
-            div class=timeline-item
-                h3Pré-Históriah3
-                pAté aprox. 4000 a.C. (Invenção da escrita)p
-            div
-            div class=timeline-item
-                h3Idade Antigah3
-                pDe 4000 a.C. até 476 d.C. (Queda de Roma)p
-            div
-            div class=timeline-item
-                h3Idade Médiah3
-                pDe 476 d.C. até 1453 (Queda de Constantinopla)p
-            div
-            div class=timeline-item
-                h3Idade Modernah3
-                pDe 1453 até 1789 (Revolução Francesa)p
-            div
-            div class=timeline-item
-                h3Idade Contemporâneah3
-                pDe 1789 até os dias atuaisp
-            div
-        aside
-
-        !-- Coluna da Direita Gerenciador Dinâmico de Personagens --
-        main class=characters-section
-            div class=section-header
-                h2Personagens Catalogadosh2
-                button onclick=openModal()+ Adicionar Personagembutton
-            div
+    <!-- Conteúdo Principal -->
+    <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Coluna Esquerda: Linha do Tempo (Fixa) -->
+        <section class="lg:col-span-1 bg-white p-6 rounded-xl shadow-xs border border-slate-100">
+            <h2 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                ⏳ Linha do Tempo das Eras
+            </h2>
             
-            div class=characters-grid id=charactersGrid
-                !-- Os personagens criados vão aparecer aqui dentro --
-            div
-        main
-    div
+            <div class="relative border-l border-indigo-200 ml-3 space-y-6">
+                <div class="mb-4 ml-6">
+                    <span class="absolute flex items-center justify-center w-6 h-6 bg-indigo-100 text-indigo-800 rounded-full -left-3 ring-4 ring-white text-xs font-bold">1</span>
+                    <h3 class="font-semibold text-slate-800">Pré-História</h3>
+                    <p class="text-xs text-slate-500">Até c. 4000 a.C. (Invenção da escrita)</p>
+                </div>
+                <div class="mb-4 ml-6">
+                    <span class="absolute flex items-center justify-center w-6 h-6 bg-indigo-100 text-indigo-800 rounded-full -left-3 ring-4 ring-white text-xs font-bold">2</span>
+                    <h3 class="font-semibold text-slate-800">Idade Antiga</h3>
+                    <p class="text-xs text-slate-500">4000 a.C. a 476 d.C. (Queda de Roma)</p>
+                </div>
+                <div class="mb-4 ml-6">
+                    <span class="absolute flex items-center justify-center w-6 h-6 bg-indigo-100 text-indigo-800 rounded-full -left-3 ring-4 ring-white text-xs font-bold">3</span>
+                    <h3 class="font-semibold text-slate-800">Idade Média</h3>
+                    <p class="text-xs text-slate-500">476 d.C. a 1453 (Queda de Constantinopla)</p>
+                </div>
+                <div class="mb-4 ml-6">
+                    <span class="absolute flex items-center justify-center w-6 h-6 bg-indigo-100 text-indigo-800 rounded-full -left-3 ring-4 ring-white text-xs font-bold">4</span>
+                    <h3 class="font-semibold text-slate-800">Idade Moderna</h3>
+                    <p class="text-xs text-slate-500">1453 a 1789 (Revolução Francesa)</p>
+                </div>
+                <div class="ml-6">
+                    <span class="absolute flex items-center justify-center w-6 h-6 bg-indigo-500 text-white rounded-full -left-3 ring-4 ring-white text-xs font-bold">5</span>
+                    <h3 class="font-semibold text-slate-800">Idade Contemporânea</h3>
+                    <p class="text-xs text-slate-500">1789 até a atualidade</p>
+                </div>
+            </div>
+        </section>
 
-    !-- Janela Flutuante (Modal) para Adicionar Personagem --
-    div class=modal id=charModal
-        div class=modal-content
-            h2Novo Personagemh2
-            form id=charForm onsubmit=saveCharacter(event)
-                div class=form-group
-                    label for=nameNome do Personagemlabel
-                    input type=text id=name required placeholder=Ex Júlio César
-                div
-                div class=form-group
-                    label for=birthDataÉpoca de Nascimentolabel
-                    input type=text id=birth required placeholder=Ex 100 a.C. ou 1450
-                div
-                div class=form-group
-                    label for=deathDataÉpoca de Falecimentolabel
-                    input type=text id=death required placeholder=Ex 44 a.C. ou 1510
-                div
-                div class=form-group
-                    label for=religionReligiãolabel
-                    input type=text id=religion placeholder=Ex Politeísmo Romano
-                div
-                div class=form-group
-                    label for=languageLíngua faladalabel
-                    input type=text id=language placeholder=Ex Latim
-                div
-                div class=form-group
-                    label for=eraEra Históricalabel
-                    input type=text id=era placeholder=Ex Idade Antiga
-                div
+        <!-- Coluna Direita: Catálogo Dinâmico -->
+        <section class="lg:col-span-2 space-y-6">
+            <div class="bg-white p-4 rounded-xl shadow-xs border border-slate-100 flex flex-col sm:flex-row gap-4 justify-between items-center">
+                <div class="relative w-full sm:w-72">
+                    <input type="text" id="searchInput" oninput="filterCharacters()" placeholder="Buscar personagem ou era..." 
+                        class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:outline-hidden focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <button onclick="toggleModal(true)" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors cursor-pointer shadow-xs">
+                    + Adicionar Personagem
+                </button>
+            </div>
 
-                div class=modal-actions
-                    button type=button class=btn-cancel onclick=closeModal()Cancelarbutton
-                    button type=submitSalvarbutton
-                div
-            form
-        div
-    div
+            <div id="charactersGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Inserido dinamicamente via JavaScript -->
+            </div>
+        </section>
+    </main>
 
-    script
-         Array que vai guardar os personagens na memória do navegador
+    <!-- Modal Formulário -->
+    <div id="modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs hidden justify-center items-center p-4 z-50">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+            <div class="bg-indigo-900 text-white p-4 flex justify-between items-center">
+                <h3 class="font-bold text-lg">Novo Registro Histórico</h3>
+                <button onclick="toggleModal(false)" class="text-white/70 hover:text-white text-xl cursor-pointer">&times;</button>
+            </div>
+            
+            <form id="charForm" onsubmit="saveCharacter(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Nome completo</label>
+                    <input type="text" id="name" required placeholder="Ex: Cleópatra" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-hidden">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Nascimento</label>
+                        <input type="text" id="birth" required placeholder="Ex: 69 a.C." class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-hidden">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Falecimento</label>
+                        <input type="text" id="death" required placeholder="Ex: 30 a.C." class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-hidden">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Era Histórica</label>
+                    <select id="era" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-hidden">
+                        <option value="Pré-História">Pré-História</option>
+                        <option value="Idade Antiga" selected>Idade Antiga</option>
+                        <option value="Idade Média">Idade Média</option>
+                        <option value="Idade Moderna">Idade Moderna</option>
+                        <option value="Idade Contemporânea">Idade Contemporânea</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Religião</label>
+                        <input type="text" id="religion" placeholder="Ex: Religião Egípcia" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-hidden">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Idioma Oficial</label>
+                        <input type="text" id="language" placeholder="Ex: Egípcio antigo" class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-hidden">
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
+                    <button type="button" onclick="toggleModal(false)" class="px-4 py-2 border border-slate-200 rounded-lg text-slate-600 text-sm hover:bg-slate-50 cursor-pointer">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-semibold shadow-xs cursor-pointer">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Lógico do Sistema -->
+    <script>
         let characters = [];
 
-         Carregar dados salvos no navegador ao abrir a página
-        window.onload = function() {
-            const savedChars = localStorage.getItem('historical_characters');
-            if (savedChars) {
-                characters = JSON.parse(savedChars);
-                renderCharacters();
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('historografia_db');
+            if (saved) {
+                characters = JSON.parse(saved);
+            } else {
+                characters = [
+                    { id: 1, name: 'Leonardo da Vinci', birth: '1452', death: '1519', era: 'Idade Moderna', religion: 'Catolicismo', language: 'Italiano' },
+                    { id: 2, name: 'Júlio César', birth: '100 a.C.', death: '44 a.C.', era: 'Idade Antiga', religion: 'Politeísmo Romano', language: 'Latim' }
+                ];
+                saveToLocalStorage();
             }
-        };
+            renderCharacters(characters);
+        });
 
-         Funções para abrirfechar o formulário
-        function openModal() {
-            document.getElementById('charModal').style.display = 'flex';
+        function saveToLocalStorage() {
+            localStorage.setItem('historografia_db', JSON.stringify(characters));
         }
 
-        function closeModal() {
-            document.getElementById('charModal').style.display = 'none';
-            document.getElementById('charForm').reset();
-        }
-
-         Função executada ao clicar em Salvar
-        function saveCharacter(event) {
-            event.preventDefault();  Impede a página de recarregar
-
-             Captura os valores digitados
-            const newChar = {
-                id Date.now(),
-                name document.getElementById('name').value,
-                birth document.getElementById('birth').value,
-                death document.getElementById('death').value,
-                religion document.getElementById('religion').value  'Não informada',
-                language document.getElementById('language').value  'Não informada',
-                era document.getElementById('era').value  'Geral'
-            };
-
-             Adiciona na lista, salva no LocalStorage e atualiza a tela
-            characters.push(newChar);
-            localStorage.setItem('historical_characters', JSON.stringify(characters));
-            
-            renderCharacters();
-            closeModal();
-        }
-
-         Função para apagar um personagem se precisar
-        function deleteCharacter(id) {
-            characters = characters.filter(char = char.id !== id);
-            localStorage.setItem('historical_characters', JSON.stringify(characters));
-            renderCharacters();
-        }
-
-         Desenha os cartões dos personagens na tela
-        function renderCharacters() {
-            const grid = document.getElementById('charactersGrid');
-            grid.innerHTML = '';  Limpa a tela antes de redesenhar
-
+        function toggleModal(show) {
